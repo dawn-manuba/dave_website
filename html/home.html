@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="../css/home.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/animejs"></script>
+</head>
+
+<body>
+<!-- Header navbar-->
+    <section class="top-area">
+
+        <div class="banner">
+            <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 0 512 512">
+                <path opacity="1" fill="#ffffff" d="M480 32l-64 368-223.3 80L0 400l19.6-94.8h82l-8 40.6L210 390.2l134.1-44.4 18.8-97.1H29.5l16-82h333.7l10.5-52.7H56.3l16.3-82H480z"/>
+                <path opacity = "1" fill=""#ffffff></path>
+            </svg>
+            <div class="navbar">
+                <ul>
+                    <li><a href="./home.html">Home</a></li>
+                    <li><a href="./playlist.html">Playlist</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./profile.html">Profile</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+<!-- End Header navbar -->
+
+<!--content-->
+    <section class="content">
+        <h1>Content</h1>
+        <p>content</p>
+        <div class="row">
+            <div class="course-col">
+                <h3>conten1</h3>
+                <p>content1</p>
+            </div>
+            <div class="course-col">
+                <h3>conten2</h3>
+                <p>content2</p>
+            </div>
+            <div class="course-col">
+                <h3>conten3</h3>
+                <p>content3</p>
+            </div> 
+        </div>
+    </section>
+<!--end-->
+
+<!--The picking stage shshshhs-->
+    <section class="choose">
+        <h1>Choose what you Like</h1>
+        <p>content</p>
+
+        <div class="row">
+            <div class="choose-col">
+                <img src="../assets/img/img1.jpg">
+                    <div class="layer">
+                        <h3>content</h3>
+                    </div>
+            </div>
+            <div class="choose-col">
+                <img src="../assets/img/img2.jpg">
+                    <div class="layer">
+                        <h3>content</h3>
+                    </div>
+        </div>
+        <div class="choose-col">
+            <img src="../assets/img/img3.jpg">
+                <div class="layer">
+                    <h3>content</h3>
+                </div>
+    </section>
+<!--She did not choose you end-->
+
+<!--THe memes ehhehe-->
+    <section class="view">
+        <h1>EHEHEHHEHEHEH</h1>
+        <p>HAHAHahHAHah</p>
+
+        <div class="row">
+            <div  class="memes-col">
+                <img src="../assets/img/img1.jpg">
+                <div>
+                    <p>
+                        heheheheheheh
+                    </p>
+                    <h3>HAHAHAHAHAH</h3>
+                </div>
+            </div>
+            <div  class="memes-col">
+                <img src="../assets/img/img1.jpg">
+                <div>
+                    <p>
+                        heheheheheheh
+                    </p>
+                    <h3>HAHAHAHAHAH</h3>
+                </div>
+            </div>
+            <div  class="memes-col">
+                <img src="../assets/img/img1.jpg">
+                <div> 
+                    <p>
+                        heheheheheheh
+                    </p>
+                    <h3>HAHAHAHAHAH</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!--Footers-->
+    <section class="footer">
+        <h4>footer</h4>
+        <p>hehehe</p>
+    </section>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const particlesContainer = document.body;
+            const colors = ['#0094d4', '#00a9dd', '#6fccea', '#c7ebf8', '#e9f6fb'];
+
+            document.addEventListener('mousemove', function (event) {
+                createParticle(event.pageX, event.pageY);
+            });
+
+            function createParticle(x, y) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particlesContainer.appendChild(particle);
+
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                animateParticle(particle);
+            }
+
+            function animateParticle(particle) {
+                anime({
+                    targets: particle,
+                    translateX: anime.random(-50, 50),
+                    translateY: anime.random(-50, 50),
+                    scale: anime.random(0.5, 1.5),
+                    opacity: 0,
+                    duration: anime.random(1000, 2000),
+                    easing: 'easeOutQuad',
+                    complete: function () {
+                        particle.remove();
+                    }
+                });
+            }
+        });
+    </script>
+</body>

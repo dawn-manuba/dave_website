@@ -1,0 +1,303 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #191919;
+}
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none; /* Ensure the particles don't interfere with mouse events */
+}
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("./assets/img/pexels-kevin-ku-577585.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/*start of navbar*/
+.navbar svg{
+    height: 50px;
+    width: 50px;
+    fill: #ffffff;
+    margin: 25px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    width: 100%;
+    top: 0; 
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar li {
+    margin: 0 15px;
+    position: relative;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.navbar a::after{
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    transition: 0.5s;
+}
+
+.navbar a:hover::after{
+    width: 100%;
+}
+/*end of navabar*/
+
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+}
+
+.content h1{
+    font-size: 70px;
+    margin-top: 80px;
+}
+
+.content p{
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+}
+
+
+button{
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #dde1e4;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+span{
+    background: #919ba2;
+    height: 100%;
+    width: 0%;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+button:hover span{
+    width: 100%;
+}
+
+button:hover {
+    border: none;
+}
+/* content*/
+.content{
+    width: 100%;
+    position: absolute;
+    margin: auto;
+    text-align: center;
+    padding-top: 10px;
+}
+
+h1{
+    font-size: 36px;
+    font-weight: 600;
+}
+
+h3{
+    font-size: 30px;
+    font-weight: 600;
+    margin: 10px 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+p{
+    color: #777;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px
+}
+
+/*content list*/
+.row{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-col{
+    flex-basis: 31%;
+    background: #fff3f3;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.628);
+}
+
+.course-col p{
+    width: 100%;
+    font-weight: 500;
+    color: #000000;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.course-col:hover p{
+    bottom: 10%;
+    opacity: 1;
+}
+/* end of content*/
+
+/* choose what you like */
+.choose{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.choose-col{
+    flex-basis: 32%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s;
+    box-shadow: 0 0 20px 0px rgba(255, 255, 255, 0.322);
+}
+
+.choose-col img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.layer{
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.layer:hover{
+    background: rgba(148, 147, 147, 0.49);
+}
+
+.layer h3{
+    width: 100%;
+    font-weight: 500;
+    color: #fff;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    opacity: 0;
+    transition: 0.5s;
+}
+.layer:hover h3{
+    bottom: 49%;
+    opacity: 1;
+}
+/* she did not choose you */
+
+/* MEMES */
+.view h1{
+    text-align: center;
+    padding-top: 10%;
+}
+
+.view p{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.memes-col{
+    flex-basis: 31%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: center;
+    position: relative;
+    padding: 20px;
+    padding-bottom: 15%;
+    padding-top: 30px;
+}
+
+.memes-col img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; 
+}
+
+/* footer */
+.footer{
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+    background: #777;
+    background-size: auto;
+}
+
+.footer h4{
+    color: #fff;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.footer p{
+    color: #fff;
+}
+
+
+

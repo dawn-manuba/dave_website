@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/playlis.css">
+        <link rel="stylesheet" href="../css/mouse.css">
+        <script src="https://cdn.jsdelivr.net/npm/animejs"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+        <title>TiktokandPlaylist</title> 
+    </head>
+
+    <body>
+        <!--the start-->
+        <section class="top-area">
+            <div class="banner">
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 0 512 512">
+                    <path opacity="1" fill="#ffffff" d="M480 32l-64 368-223.3 80L0 400l19.6-94.8h82l-8 40.6L210 390.2l134.1-44.4 18.8-97.1H29.5l16-82h333.7l10.5-52.7H56.3l16.3-82H480z"/>
+                    <path opacity = "1" fill=""#ffffff></path>
+                </svg>
+                <div class="navbar">
+                    <ul>
+                        <li><a href="./home.html">Home</a></li>
+                        <li><a href="./playlist.html">Playlist</a></li>
+                        <li><a href="./about.html">About</a></li>
+                        <li><a href="./profile.html">Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+        </section>
+        <!--end-->
+
+        <section class="choose">
+            <h1>Choose what you Like</h1>
+            <p>content</p>
+    
+            <div class="row">
+                <div class="choose-col">
+                    <img src="../assets/img/img1.jpg">
+                        <div class="layer">
+                            <h3>content</h3>
+                        </div>
+                </div>
+                <div class="choose-col">
+                    <img src="../assets/img/img2.jpg">
+                        <div class="layer">
+                            <h3>content</h3>
+                        </div>
+            </div>
+            <div class="choose-col">
+                <img src="../assets/img/img3.jpg">
+                    <div class="layer">
+                        <h3>content</h3>
+                    </div>
+             </div>
+        </section>
+
+        <section>
+            
+        <!-- audio gallery -->
+<div id="app-cover">
+    <div id="bg-artwork"></div>
+    <div id="bg-layer"></div>
+    <div id="player">
+      <div id="player-track">
+        <div id="album-name"></div>
+        <div id="track-name"></div>
+        <div id="track-time">
+          <div id="current-time"></div>
+          <div id="track-length"></div>
+        </div>
+        <div id="s-area">
+          <div id="ins-time"></div>
+          <div id="s-hover"></div>
+          <div id="seek-bar"></div>
+        </div>
+      </div>
+      <div id="player-content">
+        <div id="album-art">
+          <img src="../assets/img/no evil.jpeg" class="active" id="_1">
+          <img src="../assets/img/wolf.jpeg" id="_2">
+          <img src="../assets/img/supershy.jpeg" id="_3">
+          <img src="../assets/img/twent.jpeg" id="_4">
+          <div id="buffer-box">Buffering ...</div>
+        </div>
+        <div id="player-controls">
+          <div class="control">
+            <div class="button" id="play-previous">
+              <i class="fas fa-backward"></i>
+            </div>
+          </div>
+          <div class="control">
+            <div class="button" id="play-pause-button">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+          <div class="control">
+            <div class="button" id="play-next">
+              <i class="fas fa-forward"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- end audio gallery -->
+        </section>
+
+        <!--content-->
+    <section class="content">
+        <h1>Content</h1>
+        <p>content</p>
+        <div class="row">
+            <div class="course-col">
+                <iframe width="420" height="345" src="../assets/img/407541026_7264339256930034_3542743267731851831_n.mp4">
+                </iframe>
+            </div>
+            <div class="course-col">
+              <video width="420" height="345" controls>
+                <source src="../assets/img/407573098_6948734905202467_7572155109307413660_n.mp4" type="video/mp4">
+                Your browser does not support HTML video.
+            </video>
+            </div>
+            <div class="course-col">
+                <iframe src="../assets/img/pexels-tea-oebel-6804117 (Original).mp4"
+                width="420" height="345" allowfullscreen></iframe>
+            </div> 
+        </div>
+    </section>
+<!--end content-->
+
+        <script>
+            // for audio function 
+            $(function () {
+  var playerTrack = $("#player-track"),
+    bgArtwork = $("#bg-artwork"),
+    bgArtworkUrl,
+    albumName = $("#album-name"),
+    trackName = $("#track-name"),
+    albumArt = $("#album-art"),
+    sArea = $("#s-area"),
+    seekBar = $("#seek-bar"),
+    trackTime = $("#track-time"),
+    insTime = $("#ins-time"),
+    sHover = $("#s-hover"),
+    playPauseButton = $("#play-pause-button"),
+    i = playPauseButton.find("i"),
+    tProgress = $("#current-time"),
+    tTime = $("#track-length"),
+    seekT,
+    seekLoc,
+    seekBarPos,
+    cM,
+    ctMinutes,
+    ctSeconds,
+    curMinutes,
+    curSeconds,
+    durMinutes,
+    durSeconds,
+    playProgress,
+    bTime,
+    nTime = 0,
+    buffInterval = null,
+    tFlag = false,
+        // this is where to change the album and song title
+    albums = [
+    "No Evil",
+    "Astronaut In The Ocean",
+    "Super Shy",
+    "Stressed Out"
+    ],
+    trackNames = [
+    "Branco, Lukas Graham - No Evil",
+    "Wolf - Astronaut In The Ocean",
+    "NewJeans (뉴진스) 'Super Shy'",
+    "twenty one pilots_ Stressed Out",
+    ],
+    albumArtworks = ["_1", "_2", "_3", "_4"], // add number if new song will be added
+    // this is where to change the song,  also change the cover image at top 
+    trackUrl = [
+    "../assets/music/Branco, Lukas Graham - No Evil.mp3",    
+    "../assets/music/Masked Wolf - Astronaut In The Ocean (Official Music Video).mp3",
+    "../assets/music/NewJeans (뉴진스) 'Super Shy' Official MV.mp3",
+    "../assets/music/twenty one pilots_ Stressed Out [OFFICIAL VIDEO].mp3"
+    ],
+    playPreviousTrackButton = $("#play-previous"),
+    playNextTrackButton = $("#play-next"),
+    currIndex = -1;
+
+  function playPause() {
+    setTimeout(function () {
+      if (audio.paused) {
+        playerTrack.addClass("active");
+        albumArt.addClass("active");
+        checkBuffering();
+        i.attr("class", "fas fa-pause");
+        audio.play();
+      } else {
+        playerTrack.removeClass("active");
+        albumArt.removeClass("active");
+        clearInterval(buffInterval);
+        albumArt.removeClass("buffering");
+        i.attr("class", "fas fa-play");
+        audio.pause();
+      }
+    }, 300);
+  }
+
+  function showHover(event) {
+    seekBarPos = sArea.offset();
+    seekT = event.clientX - seekBarPos.left;
+    seekLoc = audio.duration * (seekT / sArea.outerWidth());
+
+    sHover.width(seekT);
+
+    cM = seekLoc / 60;
+
+    ctMinutes = Math.floor(cM);
+    ctSeconds = Math.floor(seekLoc - ctMinutes * 60);
+
+    if (ctMinutes < 0 || ctSeconds < 0) return;
+
+    if (ctMinutes < 0 || ctSeconds < 0) return;
+
+    if (ctMinutes < 10) ctMinutes = "0" + ctMinutes;
+    if (ctSeconds < 10) ctSeconds = "0" + ctSeconds;
+
+    if (isNaN(ctMinutes) || isNaN(ctSeconds)) insTime.text("--:--");
+    else insTime.text(ctMinutes + ":" + ctSeconds);
+
+    insTime.css({ left: seekT, "margin-left": "-21px" }).fadeIn(0);
+  }
+
+  function hideHover() {
+    sHover.width(0);
+    insTime.text("00:00").css({ left: "0px", "margin-left": "0px" }).fadeOut(0);
+  }
+
+  function playFromClickedPos() {
+    audio.currentTime = seekLoc;
+    seekBar.width(seekT);
+    hideHover();
+  }
+
+  function updateCurrTime() {
+    nTime = new Date();
+    nTime = nTime.getTime();
+
+    if (!tFlag) {
+      tFlag = true;
+      trackTime.addClass("active");
+    }
+
+    curMinutes = Math.floor(audio.currentTime / 60);
+    curSeconds = Math.floor(audio.currentTime - curMinutes * 60);
+
+    durMinutes = Math.floor(audio.duration / 60);
+    durSeconds = Math.floor(audio.duration - durMinutes * 60);
+
+    playProgress = (audio.currentTime / audio.duration) * 100;
+
+    if (curMinutes < 10) curMinutes = "0" + curMinutes;
+    if (curSeconds < 10) curSeconds = "0" + curSeconds;
+
+    if (durMinutes < 10) durMinutes = "0" + durMinutes;
+    if (durSeconds < 10) durSeconds = "0" + durSeconds;
+
+    if (isNaN(curMinutes) || isNaN(curSeconds)) tProgress.text("00:00");
+    else tProgress.text(curMinutes + ":" + curSeconds);
+
+    if (isNaN(durMinutes) || isNaN(durSeconds)) tTime.text("00:00");
+    else tTime.text(durMinutes + ":" + durSeconds);
+
+    if (
+      isNaN(curMinutes) ||
+      isNaN(curSeconds) ||
+      isNaN(durMinutes) ||
+      isNaN(durSeconds)
+    )
+      trackTime.removeClass("active");
+    else trackTime.addClass("active");
+
+    seekBar.width(playProgress + "%");
+
+    if (playProgress == 100) {
+      i.attr("class", "fa fa-play");
+      seekBar.width(0);
+      tProgress.text("00:00");
+      albumArt.removeClass("buffering").removeClass("active");
+      clearInterval(buffInterval);
+    }
+  }
+
+  function checkBuffering() {
+    clearInterval(buffInterval);
+    buffInterval = setInterval(function () {
+      if (nTime == 0 || bTime - nTime > 1000) albumArt.addClass("buffering");
+      else albumArt.removeClass("buffering");
+
+      bTime = new Date();
+      bTime = bTime.getTime();
+    }, 100);
+  }
+
+  function selectTrack(flag) {
+    if (flag == 0 || flag == 1) ++currIndex;
+    else --currIndex;
+
+    if (currIndex > -1 && currIndex < albumArtworks.length) {
+      if (flag == 0) i.attr("class", "fa fa-play");
+      else {
+        albumArt.removeClass("buffering");
+        i.attr("class", "fa fa-pause");
+      }
+
+      seekBar.width(0);
+      trackTime.removeClass("active");
+      tProgress.text("00:00");
+      tTime.text("00:00");
+
+      currAlbum = albums[currIndex];
+      currTrackName = trackNames[currIndex];
+      currArtwork = albumArtworks[currIndex];
+
+      audio.src = trackUrl[currIndex];
+
+      nTime = 0;
+      bTime = new Date();
+      bTime = bTime.getTime();
+
+      if (flag != 0) {
+        audio.play();
+        playerTrack.addClass("active");
+        albumArt.addClass("active");
+
+        clearInterval(buffInterval);
+        checkBuffering();
+      }
+
+      albumName.text(currAlbum);
+      trackName.text(currTrackName);
+      albumArt.find("img.active").removeClass("active");
+      $("#" + currArtwork).addClass("active");
+
+      bgArtworkUrl = $("#" + currArtwork).attr("src");
+
+      bgArtwork.css({ "background-image": "url(" + bgArtworkUrl + ")" });
+    } else {
+      if (flag == 0 || flag == 1) --currIndex;
+      else ++currIndex;
+    }
+  }
+
+  function initPlayer() {
+    audio = new Audio();
+
+    selectTrack(0);
+
+    audio.loop = false;
+
+    playPauseButton.on("click", playPause);
+
+    sArea.mousemove(function (event) {
+      showHover(event);
+    });
+
+    sArea.mouseout(hideHover);
+
+    sArea.on("click", playFromClickedPos);
+
+    $(audio).on("timeupdate", updateCurrTime);
+
+    playPreviousTrackButton.on("click", function () {
+      selectTrack(-1);
+    });
+    playNextTrackButton.on("click", function () {
+      selectTrack(1);
+    });
+  }
+
+  initPlayer();
+});
+
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const particlesContainer = document.body;
+                const colors = ['#0094d4', '#00a9dd', '#6fccea', '#c7ebf8', '#e9f6fb'];
+    
+                document.addEventListener('mousemove', function (event) {
+                    createParticle(event.pageX, event.pageY);
+                });
+    
+                function createParticle(x, y) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    particlesContainer.appendChild(particle);
+    
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    
+                    animateParticle(particle);
+                }
+    
+                function animateParticle(particle) {
+                    anime({
+                        targets: particle,
+                        translateX: anime.random(-50, 50),
+                        translateY: anime.random(-50, 50),
+                        scale: anime.random(0.5, 1.5),
+                        opacity: 0,
+                        duration: anime.random(1000, 2000),
+                        easing: 'easeOutQuad',
+                        complete: function () {
+                            particle.remove();
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
