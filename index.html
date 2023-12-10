@@ -3,7 +3,6 @@
   <head>
     <title>Welcome Project Page</title>
     <link rel="stylesheet" href="./css/index.css" />
-    <!-- <link rel="stylesheet" href="./css/mouse.css" /> -->
     <link rel="stylesheet" href="./css/candle.css" />
 
     <meta charset="UTF-8" />
@@ -25,7 +24,7 @@
           <li><a href="#">Profile</a></li>
         </ul>
       </div>
-      
+
       <div class="content">
         <div class="grid-container">
             <div class="grid-item"><h1>Welcome to My Website</h1></div>
@@ -44,7 +43,7 @@
                       </div>
                       <div class="candle1__stick"></div>
                     </div>
-              
+
                     <div class="candle2">
                       <div class="candle2__body">
                         <div class="candle2__eyes">
@@ -64,7 +63,7 @@
                 </div>
                 <!-- partial -->
                       </div></div>
-            <div class="grid-item"><p>Created by David Azhley P. Manuba</p></div>  
+            <div class="grid-item"><p>Created by David Azhley P. Manuba</p></div>
             <div class="grid-item">
                 <div>
                 <a href="./html/home.html">
@@ -75,43 +74,5 @@
           </div>
       </div>
     </div>
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const particlesContainer = document.body;
-        const colors = ["#0094d4", "#00a9dd", "#6fccea", "#c7ebf8", "#e9f6fb"];
-
-        document.addEventListener("mousemove", function (event) {
-          createParticle(event.clientX, event.clientY);
-        });
-
-        function createParticle(x, y) {
-          const particle = document.createElement("div");
-          particle.classList.add("particle");
-          particlesContainer.appendChild(particle);
-
-          particle.style.left = x + "px";
-          particle.style.top = y + "px";
-          particle.style.backgroundColor =
-            colors[Math.floor(Math.random() * colors.length)];
-
-          animateParticle(particle);
-        }
-
-        function animateParticle(particle) {
-          anime({
-            targets: particle,
-            translateX: anime.random(-50, 50),
-            translateY: anime.random(-50, 50),
-            scale: anime.random(0.5, 1.5),
-            opacity: 0,
-            duration: anime.random(1000, 2000),
-            easing: "easeOutQuad",
-            complete: function () {
-              particle.remove();
-            },
-          });
-        }
-      });
-    </script> -->
   </body>
 </html>
